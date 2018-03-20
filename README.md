@@ -32,4 +32,4 @@ Test any cacti csv files in .\pm_graph\data\test
 >python3 ai_cacti_analyzer.py --s test
 
 Train classified in .\pm_graph\data\normal, .\pm_graph\data\outage, .\pm_graph\data\plateau
->python3 ai_cacti.py --t data
+>python3 ai_cacti.py --d data/
