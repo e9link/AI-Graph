@@ -1,5 +1,5 @@
-# Copyright 2018 The AiGraph LLC, bin.bryandu@gmail.com. All Rights Reserved.
-# 
+# Copyright 2015 The TensorFlow Authors. All Rights Reserved.
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -110,13 +110,17 @@ def load_csv_with_header(filename, header_text, image_size, entries_in_file):
         if ( len(row) == 1 ):
           col1 = 0
           col2 = 0
-        elif( row[1] == ''):
+        elif ( len(row) == 2 ):
+          if ( row[1] == '' ):
+            col1 = 0
+          else:
+            col1 = float(row[1])
+          col2 = 0
+        elif ( row[1] == '' ):
           col1 = 0
         else:
           col1 = float(row[1])
-          if ( len(row) < 3 ):
-            col2 = 0
-          elif ( row[2] ==''):
+          if ( row[2] ==''):
             col2 = 0
           else:
             col2 = float(row[2])
@@ -154,18 +158,21 @@ def load_csv_with_header_shift(filename, header_text, image_size, shift):
       
     for i in range(0, image_size*read_entry):
       row = next(data_file)
-#      print("row", row, "entry", i)
       if( (i % read_entry) == shift ):
         if ( len(row) == 1 ):
           col1 = 0
           col2 = 0
-        elif( row[1] == ''):
+        elif ( len(row) == 2 ):
+          if ( row[1] == '' ):
+            col1 = 0
+          else:
+            col1 = float(row[1])
+          col2 = 0
+        elif ( row[1] == '' ):
           col1 = 0
         else:
           col1 = float(row[1])
-          if ( len(row) < 3 ):
-            col2 = 0
-          elif ( row[2] ==''):
+          if ( row[2] ==''):
             col2 = 0
           else:
             col2 = float(row[2])
