@@ -23,9 +23,9 @@ sudo pip3 install python36-tkinter
 4.Download AI_Graph_master.zip from Github and unzip to local AI-Graph-master directory.
 
 5.Download the following two files(too big, cannot upload to github) and put into AI-Graph-master directory.
-pm_graph_variables5.ckpt.data-00000-of-00001
 
-https://drive.google.com/open?id=10Y_cdwICXpHABmVevbmKDo83aekJfp9N
+pm_graph_variables5.ckpt.data-00000-of-00001
+https://drive.google.com/open?id=1nhWdIWnYf6ywCWPpN3OonRb_yNVgu0mT
 
 gi-imperil.npy
 
