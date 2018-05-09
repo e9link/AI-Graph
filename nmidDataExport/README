@@ -1,0 +1,42 @@
+/*******************************************************************************
+
+    Author ......... Thomas Urban
+    Contact ........ support@urban-software.de
+    Home Site ...... http://www.urban-software.de
+    Program ........ DataExport for Cacti
+    Purpose ........ Exporting In/Outbound data to CSV or JSON
+
+*******************************************************************************/
+
+
+----[ Purpose
+
+	This plugin is for the exporting of (interface) data of any interface graph within Cacti.
+
+----[ Installation
+
+	To install the plugin, please refer to the Plugin Installation Documentation
+
+----[ Possible Bugs?
+   
+	If you find a problem, let us know!!! https://urbansoftware.zendesk.com
+
+----[ Future Changes
+
+	Support more data exort  Escalation
+
+	Got any ideas or complaints, please e-mail me!
+
+----[ Changelog
+       --- 1.1.1 ---
+         Bryan Du changes setup.php line 214 to get 24h data export.
+         Before change:
+           $graph_data_array["graph_start"] = time() - 3600; 
+         After change:
+           $graph_data_array["graph_start"] = time() - 86400; 
+
+    --- 1.1.0 ---
+         Added JSON Support
+
+	--- 1.0.0 ---
+		 Initial Version
