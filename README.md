@@ -1,14 +1,14 @@
 # AI-Graph
 Train an artifical intelligent model to recognize abnormal traffic graphs or KPI graphs. Great for performance or IT engineers to figure out abnormal graphs from thousands of traffic graphs like cacti or KPI graphs from telecom OSS.
 
-First release, ai_cacti_analyzer identifies two abnormal graphs:
+First release, ai_cacti_test.py with pre-trained model pm_graph_variables5.ckpt identifies two abnormal graphs:
         1) Plateau graph: bandwidth limitation
         2) Sudden traffic drop graph: outage
 
 Installation:
 1. Install python3.
 
-2. Install tensorflow 1.4
+2. Install tensorflow 1.4. Tensorflow version higher than 1.4 might have compatible issues.
 
 virtualenv --system-site-packages ~/venvs/tensorflow
 source ~/venvs/tensorflow/bin/activate
