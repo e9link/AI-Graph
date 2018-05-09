@@ -17,7 +17,7 @@ sudo pip3 install tensorflow==1.4
 3. Install required python3 module.
 
 sudo pip3 install pysftp
-sudo pip3 install matplotlib
+sudo pip3 install numpy
 sudo yum -y install python36-tkinter
 
 4.Download pm_graph from Github.
