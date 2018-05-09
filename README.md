@@ -18,9 +18,9 @@ sudo pip3 install tensorflow==1.4
 
 sudo pip3 install pysftp
 sudo pip3 install numpy
-sudo yum -y install python36-tkinter
+sudo pip3 install python36-tkinter
 
-4.Download pm_graph from Github.
+4.Download AI_Graph_master.zip from Github and unzip to local AI-Graph-master directory.
 
 5.Download the following two files(too big, cannot upload to github) and put into AI-Graph-master directory.
 pm_graph_variables5.ckpt.data-00000-of-00001
