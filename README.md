@@ -41,11 +41,11 @@ Then Cacti will output 24h graph data to /usr/share/cacti/plugins/nmidDataExport
 
 Run:
 Test any cacti csv files in .\pm_graph\data\test
->python3 ai_cacti_analyzer.py --s test
+>python3 ai_cacti_test.py
 
 Test nmidDataExport files in cacti server at /usr/share/cacti/plugins/nmidDataExport/export/. 
 --s specify the cacti server name.
->python3 ai_cacti_analyzer.py --s cacti
+>python3 ai_cacti_test.py --s cacti
 
 You can put the new train 24h data in .\pm_graph\data\normal, .\pm_graph\data\outage, .\pm_graph\data\plateau and run the following command to tune the model.
 >python3 ai_cacti.py --d ./data/ --v pm_graph_variables5.ckpt
