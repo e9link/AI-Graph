@@ -116,18 +116,20 @@ def load_csv_with_header(filename, header_text, image_size, entries_in_file):
           else:
             col1 = float(row[1])
           col2 = 0
-        elif ( row[1] == '' ):
-          col1 = 0
         else:
-          col1 = float(row[1])
+          if ( row[1] == '' ):
+            col1 = 0
+          else :
+            col1 = float(row[1])
           if ( row[2] ==''):
             col2 = 0
           else:
             col2 = float(row[2])
-          if math.isnan(col1):
-            col1=0;
-          if math.isnan(col2):
-            col2=0;
+
+        if math.isnan(col1):
+          col1=0;
+        if math.isnan(col2):
+          col2=0;
         data.append([col1, col2])
         write_entry = write_entry + 1
         
@@ -154,11 +156,12 @@ def load_csv_with_header_shift(filename, header_text, image_size, shift):
 
     if ( read_entry != 5):
       print(" Require 1 minute counters for training")
-      exit(1)
+      shift = 0
+      read_entry = 1
       
     for i in range(0, image_size*read_entry):
       row = next(data_file)
-      if( (i % read_entry) == shift ):
+      if( (i % read_entry) == 0 ):
         if ( len(row) == 1 ):
           col1 = 0
           col2 = 0
@@ -168,21 +171,22 @@ def load_csv_with_header_shift(filename, header_text, image_size, shift):
           else:
             col1 = float(row[1])
           col2 = 0
-        elif ( row[1] == '' ):
-          col1 = 0
         else:
-          col1 = float(row[1])
+          if ( row[1] == '' ):
+            col1 = 0
+          else :
+            col1 = float(row[1])
           if ( row[2] ==''):
             col2 = 0
           else:
             col2 = float(row[2])
-          if math.isnan(col1):
-            col1=0;
-          if math.isnan(col2):
-            col2=0;
+
+        if math.isnan(col1):
+          col1=0;
+        if math.isnan(col2):
+          col2=0;
         data.append([col1, col2])
-        write_entry = write_entry + 1
-        
+        write_entry = write_entry + 1       
       if ( write_entry == image_size ):
         break;
 
@@ -449,12 +453,14 @@ def read_data_sets(trainfile,
     pattern = [0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,0,0,0,0,1,1,1,1,1]
     for i in range(0, int(validation_size/25) ):
       labels_list.extend(pattern)
+#    print ("Verfication lable list:" , labels_list)
     for i in range(0, 5):
       labels_list.extend( [0]*image_normal_num)
       labels_list.extend( [1]*image_outage_num)
       labels_list.extend( [2]*image_plateau_num)
     
     print ("Train lable list:" , labels_list)
+#    print ("normal:",image_normal_num, "outage:",image_outage_num, "plateau:", image_plateau_num)
     image =np.concatenate((train_image1[:image_size*image_size*validation_size], image))
   elif( trainfile == None ):
     train_image1 = np.load('gi-imperil.npy')

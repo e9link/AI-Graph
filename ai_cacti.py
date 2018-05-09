@@ -286,7 +286,7 @@ def main(_):
   tf.summary.scalar("loss", cross_entropy)
 
   with tf.name_scope('adam_optimizer'):
-    train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
+    train_step = tf.train.AdamOptimizer(1e-5).minimize(cross_entropy)
 
   with tf.name_scope('accuracy'):
     correct_prediction = tf.equal(tf.argmax(y_conv, 1), tf.argmax(y_, 1))
@@ -321,15 +321,15 @@ def main(_):
       # Get activation function from the saved collection
       saver.restore(sess, FLAGS.v)
 
-    num_of_batch = int(num_of_trains / 100)
+    num_of_batch = int(num_of_trains / 50)
     print("num of training:",num_of_trains,", batches:", num_of_batch)
 
     for i in range(num_of_batch):
-      batch = mnist.train.next_batch(100)
+      batch = mnist.train.next_batch(50)
       if i % 5 == 0:
         [train_accuracy, s] = sess.run([accuracy, summ], feed_dict={x: batch[0], y_: batch[1], keep_prob: 1.0})
         train_writer.add_summary(s, i)
-        print('Run %d times, untraining accuracy :%.5f' % (i*100, train_accuracy))   
+        print('Run %d times, untraining accuracy :%.5f' % (i*50, train_accuracy))   
       train_step.run(feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5})
 
     [train_accuracy, s] = sess.run([accuracy, summ], feed_dict={x: mnist.validation.images, y_: mnist.validation.labels, keep_prob: 1.0})

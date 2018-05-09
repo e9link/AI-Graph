@@ -232,7 +232,7 @@ def main(_):
   tf.summary.scalar("loss", cross_entropy)
 
   with tf.name_scope('adam_optimizer'):
-    train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
+    train_step = tf.train.AdamOptimizer(1e-5).minimize(cross_entropy)
 
   with tf.name_scope('accuracy'):
     correct_prediction = tf.equal(tf.argmax(y_conv, 1), tf.argmax(y_, 1))
@@ -269,12 +269,12 @@ def main(_):
       print(map[result[i]], '    \t', test_files[i]);
 
   # Send an email with abnormal graph links
-  sender = "network.performance@aigraph.com"
+  sender = "network.performance@viaero.com"
   receiver = FLAGS.e
 
   # Create message container - the correct MIME type is multipart/alternative.
   msg = MIMEMultipart('related')
-  msg['Subject'] = FLAGS.s + ".aigraph.net abnormal cacti graphs on " + str(datetime.date.today().month) +'/'+ str(datetime.date.today().day)+'/'+str(datetime.date.today().year) 
+  msg['Subject'] = FLAGS.s + ".viaero.net abnormal cacti graphs on " + str(datetime.date.today().month) +'/'+ str(datetime.date.today().day)+'/'+str(datetime.date.today().year) 
   msg['From'] = sender
   msg['To'] = receiver
 
@@ -318,7 +318,7 @@ def main(_):
         row = next(data_file)                   
         x_start = row[0]
         x = np.arange(0, 24, 1/12)
-      html_outage = html_outage + "         " + test_files[i]+ "  "+ Title + """<a href="http://"""+ FLAGS.s+""".aigraph.net/cacti/graph.php?action=view&local_graph_id=""" + graph_id + """&rra_id=all">link</a>""" + '<br><img src="cid:image'+ str(i) + '"><br>'
+      html_outage = html_outage + "         " + test_files[i]+ "  "+ Title + """<a href="http://"""+ FLAGS.s+""".viaero.net/cacti/graph.php?action=view&local_graph_id=""" + graph_id + """&rra_id=all">link</a>""" + '<br><img src="cid:image'+ str(i) + '"><br>'
       # Get the data to plot
       array = load_csv_with_header(localpath + test_files[i], 'Date', 288, 1440)
       my_array = np.array(array)
@@ -346,7 +346,7 @@ def main(_):
         row = next(data_file)                   
         x_start = row[0]
         x = np.arange(0, 24, 1/12)
-      html_plateau = html_plateau + "         "  + "         " + test_files[i]+ "  "+ Title + """<a href="http://"""+ FLAGS.s+""".aigraph.net/cacti/graph.php?action=view&local_graph_id=""" + graph_id + """&rra_id=all">link</a>""" + '<br><img src="cid:image'+ str(i) + '"><br>'
+      html_plateau = html_plateau + "         "  + "         " + test_files[i]+ "  "+ Title + """<a href="http://"""+ FLAGS.s+""".viaero.net/cacti/graph.php?action=view&local_graph_id=""" + graph_id + """&rra_id=all">link</a>""" + '<br><img src="cid:image'+ str(i) + '"><br>'
       # Get the data to plot
       array = load_csv_with_header(localpath + test_files[i], 'Date', 288, 1440)
       my_array = np.array(array)
@@ -393,10 +393,10 @@ if __name__ == '__main__':
                       default='pm_graph_variables5.ckpt',
                       help='filename for loading saved variables')
   parser.add_argument('--s', type=str,
-                      default='test',
+                      default='cacti',
                       help='cacti server name or ip address')
   parser.add_argument('--e', type=str,
-                      default='bin.bryandu@gmail.com',
+                      default='bryan.du@viaero.com',
                       help='receiver email address')
   FLAGS, unparsed = parser.parse_known_args()
   tf.app.run(main=main, argv=[sys.argv[0]] + unparsed)
