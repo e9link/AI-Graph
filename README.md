@@ -1,9 +1,9 @@
 # AI-Graph
 Train an artifical intelligent model to recognize abnormal traffic graphs or KPI graphs. Great for performance or IT engineers to figure out abnormal graphs from thousands of traffic graphs like cacti or KPI graphs from telecom OSS.
 
-First release, ai-cacati, for traffic graphs using cacti will be available on March 18th.
-
-Second release, ai-kpi, for mobile RAN and core KPIs will be available on May 18th.
+First release, ai_cacti_analyzer identifies two abnormal graphs:
+        1) Plateau graph: bandwidth limitation
+        2) Sudden traffic drop graph: outage
 
 Installation:
 1. Install python3.
@@ -27,9 +27,21 @@ https://drive.google.com/open?id=10Y_cdwICXpHABmVevbmKDo83aekJfp9N
 gi-imperil.npy
 https://drive.google.com/open?id=1PKVtxquGk_FxKIKN1WdWboc8OKvIntGz
 
+5. Install nmidDataExport v1.1.0. 
+https://www.urban-software.com/products/nmid-plugins/nmiddataexport/
+
+6. Replace setup.php files in the nmiddataexport directory. I change setup.php to export 24h graph data. 
+
+7. In cacti server, select Console/Devices/Graph Lists/Graph management/Automated Export - Add to Export.
+Then Cacti will output 24h graph data to /usr/share/cacti/plugins/nmidDataExport/export/
+
 Run:
 Test any cacti csv files in .\pm_graph\data\test
 >python3 ai_cacti_analyzer.py --s test
 
-Train classified in .\pm_graph\data\normal, .\pm_graph\data\outage, .\pm_graph\data\plateau
->python3 ai_cacti.py --d data/
+Test nmidDataExport files in cacti server at /usr/share/cacti/plugins/nmidDataExport/export/. 
+--s specify the cacti server name.
+>python3 ai_cacti_analyzer.py --s cacti
+
+You can put the new train 24h data in .\pm_graph\data\normal, .\pm_graph\data\outage, .\pm_graph\data\plateau and run the following command to tune the model.
+>python3 ai_cacti.py --d ./data/ --v pm_graph_variables5.ckpt
