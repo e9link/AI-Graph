@@ -9,11 +9,13 @@ Installation:
 1. Install python3.
 
 2. Install tensorflow 1.4
+
 virtualenv --system-site-packages ~/venvs/tensorflow
 source ~/venvs/tensorflow/bin/activate
 sudo pip3 install tensorflow==1.4
 
 3. Install required python3 module.
+
 sudo pip3 install pysftp
 sudo pip3 install matplotlib
 sudo yum -y install python36-tkinter
