@@ -19,11 +19,10 @@ sudo pip3 install matplotlib
 sudo yum -y install python36-tkinter
 
 4.Download pm_graph from Github.
-5.Download the following two files(too big, cannot upload to github) and put into AI-Graph-master directory.
 
+5.Download the following two files(too big, cannot upload to github) and put into AI-Graph-master directory.
 pm_graph_variables5.ckpt.data-00000-of-00001
 https://drive.google.com/open?id=10Y_cdwICXpHABmVevbmKDo83aekJfp9N
-
 gi-imperil.npy
 https://drive.google.com/open?id=1PKVtxquGk_FxKIKN1WdWboc8OKvIntGz
 
