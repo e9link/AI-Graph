@@ -225,7 +225,10 @@ function nmidDataExport_check_dataExports()
 
 		/* Make graph title the suggested file name */
 		if ( is_array( $xport_array[ "meta" ] ) ) {
-		 	$filename = $hostname. '_' . $xport_array[ "meta" ][ "local_graph_id" ] . $fileending;
+      if (  $hostname == "" ) {
+		   		$fileending = '.err';  
+		  }
+	 	  $filename = $hostname. '_' . $xport_array[ "meta" ][ "local_graph_id" ] . $fileending;
 		}
 		else {
 			$filename = 'graph_export'.$fileending;
