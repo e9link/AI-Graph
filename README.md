@@ -46,7 +46,7 @@ https://www.urban-software.com/products/nmid-plugins/nmiddataexport/
 1. Test any cacti csv files in .\pm_graph\data\test<br />
 &nbsp;&nbsp;&nbsp;&nbsp;*python3 ai_cacti_test.py*
 
-&nbsp;&nbsp;&nbsp;&nbsp;.csv file format is shown as follow. Title and Step field are optional. It must have Date column to let ai_cacti_test.py to extract in/out data.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSV file format is shown as follow. Title and Step field are optional. It must have Date column to let ai_cacti_test.py to extract in/out data.<br />
 
 &nbsp;&nbsp;&nbsp;&nbsp;*Title:	'Great Plains GPC/IMPRENEETH/1023 PRI'	*<br />
 &nbsp;&nbsp;&nbsp;&nbsp;*Step:	60*<br />
