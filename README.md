@@ -5,7 +5,7 @@ First release, ai_cacti_test.py with pre-trained model pm_graph_variables5.ckpt 
 
 ![alt text](https://raw.githubusercontent.com/bryandu/AI-Graph/master/abnormal_graphs.png)
         
-It uses four conventional neural network layers and one full connected layers as follow,
+It uses five conventional neural network layers and one full connected layers as follow,
 ![alt text](https://raw.githubusercontent.com/bryandu/AI-Graph/master/pm_graph_model.png)
 
 
