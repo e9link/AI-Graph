@@ -5,6 +5,7 @@ First release, ai_cacti_test.py with pre-trained model pm_graph_variables5.ckpt 
         1) Sudden traffic drop graph: outage
         2) Plateau graph: bandwidth limitation
         3) Normal graph: graphs except outage and plateau
+![alt text](https://raw.githubusercontent.com/bryandu/AI-Graph/master/abnormal_graphs.png)
         
 It uses four conventional neural network layers and one full connected layers as follow,
 ![alt text](https://raw.githubusercontent.com/bryandu/AI-Graph/master/pm_graph_model.png)
@@ -52,5 +53,5 @@ Test nmidDataExport files in cacti server at /usr/share/cacti/plugins/nmidDataEx
 --s specify the cacti server name.
 >python3 ai_cacti_test.py --s cacti
 
-You can put the new train 24h data in .\pm_graph\data\normal, .\pm_graph\data\outage, .\pm_graph\data\plateau and run the following command to tune the model.
+You can put the new 24h training data in .\pm_graph\data\normal, .\pm_graph\data\outage, .\pm_graph\data\plateau and run the following command to tune the model.
 >python3 ai_cacti.py --d ./data/ --v pm_graph_variables5.ckpt
