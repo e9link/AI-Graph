@@ -28,98 +28,6 @@ import tensorflow as tf
 
 FLAGS = None
 
-def deepnn(x , output_size):
-
-  """deepnn builds the graph for a deep net for classifying digits.
-
-  Args:
-    x: an input tensor with the dimensions (N_examples, 288x288=82944), where 82,944 is the
-    number of pixels in a standard MNIST image.
-
-  Returns:
-    A tuple (y, keep_prob). y is a tensor of shape (N_examples, 10), with values
-    equal to the logits of classifying the graph into one of 10 classes. 
-    keep_prob is a scalar placeholder for the probability of
-    dropout.
-  """
-  # Reshape to use within a convolutional neural net.
-  # Last dimension is for "features" - there is only one here, since images are
-  # grayscale -- it would be 3 for an RGB image, 4 for RGBA, etc.
-  with tf.name_scope('reshape'):
-    x_image = tf.reshape(x, [-1, 288, 288, 1])
-    tf.summary.image('input', x_image, 3)
-
-  # Added convolutional layer - maps one grayscale image to 64 feature maps.
-  with tf.name_scope('conv0'):
-    W_conv0 = weight_variable([13, 13, 1, 64])
-    b_conv0 = bias_variable([64])
-    h_conv0 = tf.nn.relu(conv2d_5_nopad(x_image, W_conv0) + b_conv0)
-    tf.summary.histogram("weights", W_conv0)
-    tf.summary.histogram("biases", b_conv0)
-    tf.summary.histogram("activations", h_conv0)
-
-  # Added Pooling layer - downsamples by 2X.
-  with tf.name_scope('pool0'):
-    h_pool0 = max_pool_2x2(h_conv0)
-
-  # First convolutional layer - maps one grayscale image to 64 feature maps.
-  with tf.name_scope('conv1'):
-    W_conv1 = weight_variable([3, 3, 64, 96])
-    b_conv1 = bias_variable([96])
-#    h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1) + b_conv1)
-    h_conv1 = tf.nn.relu(conv2d(h_pool0, W_conv1) + b_conv1)
-
-    tf.summary.histogram("weights", W_conv1)
-    tf.summary.histogram("biases", b_conv1)
-    tf.summary.histogram("activations", h_conv1)
-
-  # Pooling layer - downsamples by 2X.
-  with tf.name_scope('pool1'):
-    h_pool1 = max_pool_2x2(h_conv1)
-
-  # Second convolutional layer -- maps 64 feature maps to 96.
-  with tf.name_scope('conv2'):
-    W_conv2 = weight_variable([3, 3, 96, 96])
-    b_conv2 = bias_variable([96])
-    h_conv2 = tf.nn.relu(conv2d(h_pool1, W_conv2) + b_conv2)
-
-  # Second pooling layer.
-  with tf.name_scope('pool2'):
-    h_pool2 = max_pool_2x2(h_conv2)
-
-  # Fully connected layer 1 -- after 3 round of downsampling, our 288x288 image
-  # is down to 7x7x96 feature maps -- maps this to 1024 features.
-  with tf.name_scope('fc1'):
-    W_fc1 = weight_variable([7 * 7 * 96, 1024])
-    b_fc1 = bias_variable([1024])
-
-    h_pool2_flat = tf.reshape(h_pool2, [-1, 7*7*96])
-    h_fc1 = tf.nn.relu(tf.matmul(h_pool2_flat, W_fc1) + b_fc1)
-
-    tf.summary.histogram("weights", W_fc1)
-    tf.summary.histogram("biases", b_fc1)
-    tf.summary.histogram("activations", h_fc1)
-
-  # Dropout - controls the complexity of the model, prevents co-adaptation of
-  # features.
-  with tf.name_scope('dropout'):
-    keep_prob = tf.placeholder(tf.float32)
-    h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)
-
-  # Map the 1024 features to 10 classes, one for each digit
-  with tf.name_scope('fc2'):
-#    W_fc2 = weight_variable([1024, 10])
-#    b_fc2 = bias_variable([10])
-    W_fc2 = weight_variable([1024, output_size])
-    b_fc2 = bias_variable([output_size])
-    y_conv = tf.matmul(h_fc1_drop, W_fc2) + b_fc2
-
-    tf.summary.histogram("weights", W_fc2)
-    tf.summary.histogram("biases", b_fc2)
-    tf.summary.histogram("activations", y_conv)
-
-  return y_conv, keep_prob
-
 def deepnn5(x , output_size):
   """deepnn builds the graph for a deep net for classifying digits.
 
@@ -140,7 +48,7 @@ def deepnn5(x , output_size):
     x_image = tf.reshape(x, [-1, 288, 288, 1])
     tf.summary.image('input', x_image, 3)
 
-  # Added convolutional layer - maps one grayscale image to 96 feature maps.
+  # Added convolutional layer - maps one grayscale image to 64 feature maps.
   with tf.name_scope('conv0'):
     W_conv0 = weight_variable([5, 5, 1, 64])
     b_conv0 = bias_variable([64])
@@ -153,7 +61,7 @@ def deepnn5(x , output_size):
   with tf.name_scope('pool0'):
     h_pool0 = max_pool_2x2(h_conv0)
 
-  # Add another convolutional layer - maps one grayscale image to 32 feature maps.
+  # Add another convolutional layer - maps 96 feature maps.
   with tf.name_scope('conv00'):
     W_conv00 = weight_variable([3, 3, 64, 96])
     b_conv00 = bias_variable([96])
@@ -163,7 +71,7 @@ def deepnn5(x , output_size):
   with tf.name_scope('pool00'):
     h_pool00 = max_pool_2x2(h_conv00)
 
-  # Add another convolutional layer - maps one grayscale image to 32 feature maps.
+  # Add another convolutional layer - maps 96 feature maps to 96.
   with tf.name_scope('conv000'):
     W_conv000 = weight_variable([3, 3, 96, 96])
     b_conv000 = bias_variable([96])
@@ -173,7 +81,7 @@ def deepnn5(x , output_size):
   with tf.name_scope('pool000'):
     h_pool000 = max_pool_2x2(h_conv000)
 
-  # First convolutional layer - maps one grayscale image to 32 feature maps.
+  # First convolutional layer - maps 96 feature maps to 96.
   with tf.name_scope('conv1'):
     W_conv1 = weight_variable([3, 3, 96, 96])
     b_conv1 = bias_variable([96])
@@ -183,7 +91,7 @@ def deepnn5(x , output_size):
   with tf.name_scope('pool1'):
     h_pool1 = max_pool_2x2(h_conv1)
 
-  # Second convolutional layer -- maps 32 feature maps to 64.
+  # Second convolutional layer -- maps 96 feature maps to 128.
   with tf.name_scope('conv2'):
     W_conv2 = weight_variable([3, 3, 96, 128])
     b_conv2 = bias_variable([128])
@@ -193,8 +101,8 @@ def deepnn5(x , output_size):
   with tf.name_scope('pool2'):
     h_pool2 = max_pool_2x2(h_conv2)
 
-  # Fully connected layer 1 -- after 2 round of downsampling, our 28x28 image
-  # is down to 8x8x64 feature maps -- maps this to 1024 features.
+  # Fully connected layer 1 -- after 5 round of downsampling, our 288x288 image
+  # is down to 9x9x128 feature maps -- maps this to 1024 features.
   with tf.name_scope('fc1'):
     W_fc1 = weight_variable([9 * 9 * 128, 1024])
     b_fc1 = bias_variable([1024])
@@ -212,10 +120,8 @@ def deepnn5(x , output_size):
     keep_prob = tf.placeholder(tf.float32)
     h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)
 
-  # Map the 1024 features to 10 classes, one for each digit
+  # Map the 1024 features to 3 classes, one for each digit
   with tf.name_scope('fc2'):
-#    W_fc2 = weight_variable([1024, 10])
-#    b_fc2 = bias_variable([10])
     W_fc2 = weight_variable([1024, output_size])
     b_fc2 = bias_variable([output_size])
     y_conv = tf.matmul(h_fc1_drop, W_fc2) + b_fc2

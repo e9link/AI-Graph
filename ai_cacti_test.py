@@ -61,7 +61,7 @@ def deepnn5(x , output_size):
     x_image = tf.reshape(x, [-1, 288, 288, 1])
 #    tf.summary.image('input', x_image, 3)
 
-  # Added convolutional layer - maps one grayscale image to 96 feature maps.
+  # Added convolutional layer - maps one grayscale image to 64 feature maps.
   with tf.name_scope('conv0'):
     W_conv0 = weight_variable([5, 5, 1, 64])
     b_conv0 = bias_variable([64])
@@ -74,7 +74,7 @@ def deepnn5(x , output_size):
   with tf.name_scope('pool0'):
     h_pool0 = max_pool_2x2(h_conv0)
 
-  # Add another convolutional layer - maps one grayscale image to 32 feature maps.
+  # Add another convolutional layer - maps to 96 feature maps.
   with tf.name_scope('conv00'):
     W_conv00 = weight_variable([3, 3, 64, 96])
     b_conv00 = bias_variable([96])
@@ -84,7 +84,7 @@ def deepnn5(x , output_size):
   with tf.name_scope('pool00'):
     h_pool00 = max_pool_2x2(h_conv00)
 
-  # Add another convolutional layer - maps one grayscale image to 32 feature maps.
+  # Add another convolutional layer - maps 96 feature maps to 96.
   with tf.name_scope('conv000'):
     W_conv000 = weight_variable([3, 3, 96, 96])
     b_conv000 = bias_variable([96])
@@ -94,7 +94,7 @@ def deepnn5(x , output_size):
   with tf.name_scope('pool000'):
     h_pool000 = max_pool_2x2(h_conv000)
 
-  # First convolutional layer - maps one grayscale image to 32 feature maps.
+  # First convolutional layer - maps 96 feature maps to 96.
   with tf.name_scope('conv1'):
     W_conv1 = weight_variable([3, 3, 96, 96])
     b_conv1 = bias_variable([96])
@@ -104,7 +104,7 @@ def deepnn5(x , output_size):
   with tf.name_scope('pool1'):
     h_pool1 = max_pool_2x2(h_conv1)
 
-  # Second convolutional layer -- maps 32 feature maps to 64.
+  # Second convolutional layer -- maps 96 feature maps to 128.
   with tf.name_scope('conv2'):
     W_conv2 = weight_variable([3, 3, 96, 128])
     b_conv2 = bias_variable([128])
@@ -114,8 +114,8 @@ def deepnn5(x , output_size):
   with tf.name_scope('pool2'):
     h_pool2 = max_pool_2x2(h_conv2)
 
-  # Fully connected layer 1 -- after 2 round of downsampling, our 28x28 image
-  # is down to 8x8x64 feature maps -- maps this to 1024 features.
+  # Fully connected layer 1 -- after 5 round of downsampling, our 288x288 image
+  # is down to 9x9x128 feature maps -- maps this to 1024 features.
   with tf.name_scope('fc1'):
     W_fc1 = weight_variable([9 * 9 * 128, 1024])
     b_fc1 = bias_variable([1024])
@@ -133,7 +133,7 @@ def deepnn5(x , output_size):
     keep_prob = tf.placeholder(tf.float32)
     h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)
 
-  # Map the 1024 features to 10 classes, one for each digit
+  # Map the 1024 features to 3 classes, one for each digit
   with tf.name_scope('fc2'):
     W_fc2 = weight_variable([1024, output_size])
     b_fc2 = bias_variable([output_size])
