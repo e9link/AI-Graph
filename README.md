@@ -20,9 +20,9 @@ Installation Procedure:
 
 3. Install required python3 module.
 
-sudo pip3 install pysftp
-sudo pip3 install numpy
-sudo pip3 install python36-tkinter
+*sudo pip3 install pysftp<br />
+sudo pip3 install numpy<br />
+sudo pip3 install python36-tkinter*<br />
 
 4.Download AI_Graph_master.zip from Github and unzip to local AI-Graph-master directory.
 
@@ -44,7 +44,7 @@ https://www.urban-software.com/products/nmid-plugins/nmiddataexport/
 Then Cacti will output 24h graph data to /usr/share/cacti/plugins/nmidDataExport/export/
 
 Run:
-Test any cacti csv files in .\pm_graph\data\test
+Test any cacti csv files in .\pm_graph\data\test<br />
 *python3 ai_cacti_test.py*
 
 .csv file format is shown as follow. Title and Step field are optional. It must have Date column to let ai_cacti_test.py to extract in/out data.<br />
