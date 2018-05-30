@@ -1,7 +1,7 @@
 # AI-Graph
-Train an artifical intelligent model to recognize abnormal traffic graphs or KPI graphs. Great for performance or IT engineers to figure out abnormal graphs from thousands of traffic graphs like cacti or KPI graphs from telecom OSS.
+The project is to train artifical intelligent models to recognize abnormal traffic graphs or KPI graphs. It can be used by performance or IT engineers to figure out abnormal graphs from thousands of traffic graphs like cacti or KPI graphs from telecom OSS.
 
-First release, ai_cacti_test.py with pre-trained model pm_graph_variables5.ckpt identifies three types of graph: 1) Sudden traffic drop graph indicating outage; 2) Plateau graph indicating bandwidth limitation; 3) Normal graphs which exclude outage and plateau graphs.
+First release, ai_cacti_test.py with pre-trained model pm_graph_variables5.ckpt identifies three types of graph: 1) Sudden traffic drop graphs indicating outage; 2) Plateau graphs indicating capacity limitation; 3) Normal graphs which exclude outage and plateau graphs.<br />
 
 ![alt text](https://raw.githubusercontent.com/bryandu/AI-Graph/master/abnormal_graphs.png)
         
@@ -12,7 +12,7 @@ It uses five conventional neural network layers and one full connected layers as
 Installation Procedure:
 1. Install python3.
 
-2. Install tensorflow 1.4. Tensorflow version higher than 1.4 might have compatible issues.
+2. Install tensorflow 1.4. Tensorflow versions higher than 1.4 might have compatible issues.
 
 virtualenv --system-site-packages ~/venvs/tensorflow
 source ~/venvs/tensorflow/bin/activate
@@ -47,7 +47,18 @@ Run:
 Test any cacti csv files in .\pm_graph\data\test
 >python3 ai_cacti_test.py
 
-Test nmidDataExport files in cacti server at /usr/share/cacti/plugins/nmidDataExport/export/. 
+.csv file format is shown as follow. Title and Step field are optional. It must have Date column to let ai_cacti_test.py to extract in/out data.<br />
+
+Title:	'Great Plains GPC/IMPRENEETH/1023 PRI'	<br />
+Step:	60<br />	
+Total Rows:	1440<br />	
+Graph ID:	2945<br />	
+Host ID:	30<br />	
+		
+Date               In	   Out<br />
+5/2/2018 9:31   1.6     4.83<br />
+
+Test nmidDataExport files in cacti server at /usr/share/cacti/plugins/nmidDataExport/export/. ai_cacti_test.py sftp the csv files in cacti server at /usr/share/cacti/plugins/nmidDataExport/export/ and checks which one is abnormal.
 --s specify the cacti server name.
 >python3 ai_cacti_test.py --s cacti
 
