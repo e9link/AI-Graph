@@ -14,9 +14,9 @@ Installation Procedure:
 
 2. Install tensorflow 1.4. Tensorflow versions higher than 1.4 might have compatible issues.
 
-virtualenv --system-site-packages ~/venvs/tensorflow
-source ~/venvs/tensorflow/bin/activate
-sudo pip3 install tensorflow==1.4
+*virtualenv --system-site-packages ~/venvs/tensorflow*<br />
+*source ~/venvs/tensorflow/bin/activate*<br />
+*sudo pip3 install tensorflow==1.4*<br />
 
 3. Install required python3 module.
 
@@ -28,14 +28,14 @@ sudo pip3 install python36-tkinter
 
 5.Download the following two files(too big, cannot upload to github) and put into AI-Graph-master directory.
 
-pm_graph_variables5.ckpt.data-00000-of-00001
+pm_graph_variables5.ckpt.data-00000-of-00001<br />
 https://drive.google.com/open?id=1nhWdIWnYf6ywCWPpN3OonRb_yNVgu0mT
 
-gi-imperil.npy
+gi-imperil.npy<br />
 
 https://drive.google.com/open?id=1PKVtxquGk_FxKIKN1WdWboc8OKvIntGz
 
-5. Install nmidDataExport v1.1.0. 
+5. Install nmidDataExport v1.1.0. <br />
 https://www.urban-software.com/products/nmid-plugins/nmiddataexport/
 
 6. Replace setup.php files in the nmiddataexport directory. I change setup.php to export 24h graph data. 
@@ -45,22 +45,22 @@ Then Cacti will output 24h graph data to /usr/share/cacti/plugins/nmidDataExport
 
 Run:
 Test any cacti csv files in .\pm_graph\data\test
->python3 ai_cacti_test.py
+*python3 ai_cacti_test.py*
 
 .csv file format is shown as follow. Title and Step field are optional. It must have Date column to let ai_cacti_test.py to extract in/out data.<br />
 
-Title:	'Great Plains GPC/IMPRENEETH/1023 PRI'	<br />
-Step:	60<br />	
-Total Rows:	1440<br />	
-Graph ID:	2945<br />	
-Host ID:	30<br />	
+*Title:	'Great Plains GPC/IMPRENEETH/1023 PRI'	*<br />
+*Step:	60*<br />
+*Total Rows:	1440*<br />
+*Graph ID:	2945*<br />
+*Host ID:	30*<br />
 		
-Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; In &nbsp; Out<br />
-5/2/2018 9:31 &nbsp;&nbsp; 1.6 &nbsp; 4.83<br />
+*Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; In &nbsp; Out*<br />
+*5/2/2018 9:31 &nbsp;&nbsp; 1.6 &nbsp; 4.83*<br />
 
 Test nmidDataExport files in cacti server at /usr/share/cacti/plugins/nmidDataExport/export/. ai_cacti_test.py sftp the csv files in cacti server at /usr/share/cacti/plugins/nmidDataExport/export/ and checks which one is abnormal.
---s specify the cacti server name.
->python3 ai_cacti_test.py --s cacti
+--s specify the cacti server name.<br />
+*python3 ai_cacti_test.py --s cacti*
 
-You can put the new 24h training data in .\pm_graph\data\normal, .\pm_graph\data\outage, .\pm_graph\data\plateau and run the following command to tune the model.
->python3 ai_cacti.py --d ./data/ --v pm_graph_variables5.ckpt
+You can put the new 24h training data in .\pm_graph\data\normal, .\pm_graph\data\outage, .\pm_graph\data\plateau and run the following command to tune the model.<br />
+*python3 ai_cacti.py --d ./data/ --v pm_graph_variables5.ckpt*
