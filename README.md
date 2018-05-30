@@ -1,10 +1,8 @@
 # AI-Graph
 Train an artifical intelligent model to recognize abnormal traffic graphs or KPI graphs. Great for performance or IT engineers to figure out abnormal graphs from thousands of traffic graphs like cacti or KPI graphs from telecom OSS.
 
-First release, ai_cacti_test.py with pre-trained model pm_graph_variables5.ckpt identifies three types of graph,
-        1) Sudden traffic drop graph: outage
-        2) Plateau graph: bandwidth limitation
-        3) Normal graph: graphs except outage and plateau
+First release, ai_cacti_test.py with pre-trained model pm_graph_variables5.ckpt identifies three types of graph: 1) Sudden traffic drop graph indicating outage; 2) Plateau graph indicating bandwidth limitation; 3) Normal graphs which exclude outage and plateau graphs.
+
 ![alt text](https://raw.githubusercontent.com/bryandu/AI-Graph/master/abnormal_graphs.png)
         
 It uses four conventional neural network layers and one full connected layers as follow,
