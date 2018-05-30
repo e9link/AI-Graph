@@ -55,8 +55,8 @@ Total Rows:	1440<br />
 Graph ID:	2945<br />	
 Host ID:	30<br />	
 		
-Date               In	   Out<br />
-5/2/2018 9:31   1.6     4.83<br />
+Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; In &nbsp; Out<br />
+5/2/2018 9:31 &nbsp;&nbsp; 1.6 &nbsp; 4.83<br />
 
 Test nmidDataExport files in cacti server at /usr/share/cacti/plugins/nmidDataExport/export/. ai_cacti_test.py sftp the csv files in cacti server at /usr/share/cacti/plugins/nmidDataExport/export/ and checks which one is abnormal.
 --s specify the cacti server name.
