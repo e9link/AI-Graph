@@ -7,7 +7,7 @@ It uses five conventional neural network layers and one full connected layers as
 ![alt text](https://raw.githubusercontent.com/bryandu/AI-Graph/master/pm_graph_model.png)
 
 
-**Installation Procedure:**<br />
+## Installation Procedure
 1. Install python3.
 
 2. Install tensorflow 1.4. Tensorflow versions higher than 1.4 might have compatible issues.<br />
@@ -40,7 +40,7 @@ https://www.urban-software.com/products/nmid-plugins/nmiddataexport/
 
 7. In cacti server, select Console/Devices/Graph Lists/Graph management/Automated Export - Add to Export. Then Cacti will output 24h graph data to /usr/share/cacti/plugins/nmidDataExport/export/
 
-**Run:**<br />
+## Running
 1. Test any cacti csv files in .\pm_graph\data\test<br />
 &nbsp;&nbsp;&nbsp;&nbsp;*python3 ai_cacti_test.py*
 
