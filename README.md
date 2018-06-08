@@ -22,7 +22,7 @@ It uses five conventional neural network layers and one full connected layers as
 &nbsp;&nbsp;&nbsp;&nbsp;*sudo pip3 install pysftp<br />
 &nbsp;&nbsp;&nbsp;&nbsp;sudo pip3 install numpy<br />
 &nbsp;&nbsp;&nbsp;&nbsp;sudo pip3 install python36-tkinter*<br />
-&nbsp;&nbsp;&nbsp;&nbsp;sudo pip3 install matplotlib*<br />
+&nbsp;&nbsp;&nbsp;&nbsp;sudo pip3 install matplotlib<br />
 
 4. Download AI_Graph_master.zip from Github and unzip to local AI-Graph-master directory.<br />
 
