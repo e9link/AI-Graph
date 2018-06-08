@@ -12,7 +12,7 @@ It uses five conventional neural network layers and one full connected layers as
 
 2. Install tensorflow 1.4. Tensorflow versions higher than 1.4 might have compatible issues.<br />
 
-&nbsp;&nbsp;&nbsp;&nbsp;sudo apt-get install python3-pip python3-dev python-virtualenv
+&nbsp;&nbsp;&nbsp;&nbsp;sudo apt-get install python3-pip python3-dev python-virtualenv<br />
 &nbsp;&nbsp;&nbsp;&nbsp;*virtualenv --system-site-packages ~/venvs/tensorflow*<br />
 &nbsp;&nbsp;&nbsp;&nbsp;*source ~/venvs/tensorflow/bin/activate*<br />
 &nbsp;&nbsp;&nbsp;&nbsp;*sudo pip3 install tensorflow==1.4*<br />
